@@ -21,7 +21,7 @@
 
     <!-- Main content -->
     <section class="content">
-
+      @include('partial.alert_message')
       <!-- Default box -->
       <div class="card">
         <div class="card card-primary card-outline">

@@ -12,5 +12,11 @@
 */
 
 Route::prefix('user')->group(function() {
-    Route::get('/', 'UserController@index');
+    Route::get('/', 'UserController@index')->middleware('can:user.view');
+    Route::get('/data', 'UserController@data')->middleware('can:user.view');
+    Route::get('/add', 'UserController@form')->middleware('can:user.create');
+    Route::post('/add', 'UserController@formProcess')->middleware('can:user.create');
+    Route::get('/edit/{id}', 'UserController@form')->middleware('can:user.update');
+    Route::post('/edit/{id}', 'UserController@formProcess')->middleware('can:user.update');
+    Route::get('/delete/{id}', 'UserController@deleteProcess')->middleware('can:user.delete');
 });

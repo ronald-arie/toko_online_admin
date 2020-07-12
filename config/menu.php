@@ -12,15 +12,16 @@ return [
         [
             'text' => 'Administration',
             'active' => [
-                'admin', 'admin/*',
+                'user', 'user/*',
+                'role', 'role/*',
             ],
             'icon' => 'user',
             'can' => ['user.view', 'role.view'],
             'submenu' => [
                 [
                     'text' => 'User List',
-                    'url' => 'admin/user',
-                    'active' => ['admin/user', 'admin/user/*'],
+                    'url' => 'user',
+                    'active' => ['user', 'user/*'],
                     'can' => 'user.view',
                 ],
                 [

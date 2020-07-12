@@ -25,9 +25,6 @@ class LoginController extends Controller {
     }
 
     public function logout(Request $request) {
-            echo "<pre>";
-            print_r(Auth::user()->role);
-            exit();
         Auth::logout();
         return redirect('/');
     }

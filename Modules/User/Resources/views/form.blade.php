@@ -1,26 +1,23 @@
 @extends('page')
 
 
-@section('header','Role')
-@section('subheader','Add Role')
+@section('header','User')
+@section('subheader','Add User')
 
 
 @section('content')
 <form class="form" method="post" >
     <input required type="hidden" name="id" value="{{ @$id }}">
     <input required type="hidden" name="_token" value="{{ csrf_token() }}">
-    <!-- <div class="card-body"> -->
         {{ $Form->setErrors($errors) }}
         {{ $Form->setColLabel(3) }}
         {{ $Form->input('name') }}
+        {{ $Form->input('username') }}
+        {{ $Form->input('password') }}
+        {{ $Form->input('email') }}
+        {{ $Form->input('role_id') }}
         {{ $Form->input('is_active') }}
-        @foreach (config('permissions.permissions') as $key => $value)
-        {{ $Form->input("permissions[$key]") }}
-        @endforeach
-    <!-- </div> -->
-    <!-- <div class="card-footer"> -->
         <button type="submit" class="btn btn-primary float-right">Submit</button>
-    <!-- </div> -->
 </form>
 
 
@@ -33,7 +30,7 @@
 <script>
     $(function () {
         {{ $Form->printJs()}}
-        $('#role-table').DataTable({
+        $('#user-table').DataTable({
             responsive: true,
             autoWidth: false,
             processing: true,
@@ -42,11 +39,11 @@
                         <'row'<'col-sm-12'tr>>
                         <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'<'row'<'col-sm-12 col-md-3'l><'col-sm-12 col-md-9'p>>>>`,
       
-            ajax: '{{ URL::to('/') }}/role/data',
+            ajax: '{{ URL::to('/') }}/user/data',
             columns: [
                 {data: 'id', name: 'id',  
                     render: function(data, type, row){
-                        return '<a href="{{ URL::to('/') }}/role/'+row.id+'" class="btn btn-sm btn-outline-info" style="white-space: nowrap"><i class="fas fa-edit"></i>Edit</a>';
+                        return '<a href="{{ URL::to('/') }}/user/'+row.id+'" class="btn btn-sm btn-outline-info" style="white-space: nowrap"><i class="fas fa-edit"></i>Edit</a>';
                     }
                 },
                 {data: 'name', name: 'name'},
